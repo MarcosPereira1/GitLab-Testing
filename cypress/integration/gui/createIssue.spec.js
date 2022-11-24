@@ -15,10 +15,14 @@ describe('Create Issue', () => {
 
     beforeEach(() => {
     cy.login(),
-    cy.createProject(issue.project)
+    cy.gui_createProject(issue.project)
 })
 
     it('Successfully', () => {
-        cy.gui.createIssue(issue)
+        cy.gui_createIssue(issue)
+
+        cy.get('.issue-details')
+        .should('contain', issue.title)
+        .and('contain', issue.description)
     })
 })
